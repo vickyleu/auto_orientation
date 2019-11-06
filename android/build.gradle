@@ -3,12 +3,15 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     repositories {
+        maven {
+            url 'http://download.flutter.io'
+        }
         google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.5.2'
     }
 }
 
@@ -26,9 +29,10 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         disable 'InvalidPackage'
     }
 }
+
