@@ -25,7 +25,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 16
@@ -34,22 +34,4 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
-}
-
-
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new Exception("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-}
-
-dependencies {
-    compileOnly fileTree(include: ['flutter.jar'], dir: "$flutterRoot/bin/cache/artifacts/engine/android-arm")
 }
