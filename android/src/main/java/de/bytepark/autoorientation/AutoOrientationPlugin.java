@@ -28,18 +28,23 @@ public class AutoOrientationPlugin implements MethodCallHandler {
   public void onMethodCall(MethodCall call, Result result) {
     switch(call.method) {
       case "setLandscapeRight":
+        if(this.activity!=null)
         this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         break;
       case "setLandscapeLeft":
+        if(this.activity!=null)
         this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
         break;
       case "setPortraitUp":
+        if(this.activity!=null)
         this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         break;
       case "setPortraitDown":
+        if(this.activity!=null)
         this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
         break;
       case "setPortraitAuto":
+        if(this.activity!=null)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
           this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
         } else {
@@ -47,6 +52,7 @@ public class AutoOrientationPlugin implements MethodCallHandler {
         }
         break;
       case "setLandscapeAuto":
+        if(this.activity!=null)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
           this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE);
         } else {
@@ -54,6 +60,7 @@ public class AutoOrientationPlugin implements MethodCallHandler {
         }
         break;
       case "setAuto":
+        if(this.activity!=null)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
           this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
         } else {
