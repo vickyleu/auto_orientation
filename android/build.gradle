@@ -2,25 +2,54 @@ group 'de.bytepark.autoorientation'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.3.50'
+    ext.kotlin_version = '1.5.10'
     repositories {
-        maven {
-            url 'http://download.flutter.io'
+        all { ArtifactRepository repo ->
+            if(repo instanceof MavenArtifactRepository){
+                def url = repo.url.toString()
+                if (
+                (url.startsWith('https://dl.google.com/')||url.startsWith('http://dl.google.com/'))||
+                        (url.startsWith('https://repo1.maven.org/')||url.startsWith('http://repo1.maven.org/'))||
+                        (url.startsWith('https://jcenter.bintray.com/')||url.startsWith('http://jcenter.bintray.com/'))||
+                        (url.startsWith('https://plugins.gradle.org/')||url.startsWith('http://plugins.gradle.org/'))||
+                        (url.startsWith('https://download.flutter.io/')||url.startsWith('http://download.flutter.io/'))
+                ) {
+                    remove repo
+                }
+            }
         }
-        google()
-        jcenter()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 rootProject.allprojects {
     repositories {
-        google()
-        jcenter()
+        all { ArtifactRepository repo ->
+            if(repo instanceof MavenArtifactRepository){
+                def url = repo.url.toString()
+                if (
+                (url.startsWith('https://dl.google.com/')||url.startsWith('http://dl.google.com/'))||
+                        (url.startsWith('https://repo1.maven.org/')||url.startsWith('http://repo1.maven.org/'))||
+                        (url.startsWith('https://jcenter.bintray.com/')||url.startsWith('http://jcenter.bintray.com/'))||
+                        (url.startsWith('https://plugins.gradle.org/')||url.startsWith('http://plugins.gradle.org/'))||
+                        (url.startsWith('https://download.flutter.io/')||url.startsWith('http://download.flutter.io/'))
+                ) {
+                    remove repo
+                }
+            }
+        }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
     }
 }
 
